@@ -1,1 +1,0 @@
-http://thetestingworldapi.com/api/studentsDetails/<built-in function id>
