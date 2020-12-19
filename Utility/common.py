@@ -1,10 +1,13 @@
 import openpyxl
+import json
 
 class Common():
 
-    def __init__(self, FilePath, SheetName):
-        self.workbook = openpyxl.load_workbook(FilePath)  # Load xlsx into workbook variable
-        self.sheet = self.workbook[SheetName]  # define which sheet to use
+    def open_workbook(self, FilePath, SheetName):
+        workbook = openpyxl.load_workbook(FilePath)  # Load xlsx into workbook variable
+        sheet = self.workbook[SheetName]  # define which sheet to use
+        return workbook, sheet
+
 
     def fetch_row_count(self):
         rows = self.sheet.max_row  # read how many rows are in the file
@@ -30,3 +33,8 @@ class Common():
             jsonRequest[keyList[i-1]] = cell.value
 
         return jsonRequest
+
+    def request_file(self, request_file_path):
+        request_file = open(request_file_path, 'r')
+        json_file = json.loads(request_file.read())
+        return json_file
